@@ -11,7 +11,7 @@ export default defineConfig(({ command }) => {
     root: 'src',
     build: {
       sourcemap: true,
-
+      outDir: '../dist',
       rollupOptions: {
         input: glob.sync('./src/*.html'),
         output: {
@@ -23,7 +23,12 @@ export default defineConfig(({ command }) => {
           entryFileNames: 'commonHelpers.js',
         },
       },
-      outDir: '../dist',
+      commonjsOptions: {
+        include: [/node_modules/],
+      },
+    },
+    optimizeDeps: {
+      exclude: ['axios'],
     },
     plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
   };
