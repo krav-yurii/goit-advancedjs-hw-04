@@ -42,6 +42,8 @@ form.addEventListener('submit', async function (event) {
       displayErrorMessage(
         'Sorry, there are no images matching your search query. Please try again!'
       );
+      loadMoreBtn.classList.add('is-hidden');
+
       return;
     }
 
@@ -107,9 +109,11 @@ function displayEndMessage() {
 
 function handleImageData(data) {
   if (data.hits.length === 0) {
+    console.log(data.hits);
     displayErrorMessage(
       'Sorry, there are no images matching your search query. Please try again!'
     );
+    loadMoreBtn.classList.add('is-hidden');
     return;
   }
 
